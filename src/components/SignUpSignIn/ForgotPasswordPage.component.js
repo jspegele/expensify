@@ -17,18 +17,16 @@ const ForgotPasswordPage = () => {
       {sent ? (
         <div className="mt-16">Success! Check your email for a password reset link.</div>
       ) : (
-        <div>
-          <div className="mt-8">
-            <ForgotPasswordForm setSent={setSent} />
-          </div>
-          <div className="mt-8">
-            Take me back to{" "}
-            <Link className="underline hover:text-sky-800" to="/signup">
-              sign in
-            </Link>
-          </div>
+        <div className="mt-8">
+          <ForgotPasswordForm setSent={setSent} />
         </div>
       )}
+      <div className="mt-8">
+        Take me back to{" "}
+        <Link className="underline hover:text-sky-800" to="/signup">
+          sign in
+        </Link>
+      </div>
     </div>
   )
 }
