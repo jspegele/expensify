@@ -5,8 +5,9 @@ import { AuthContext } from "../contexts/AuthContext"
 
 import SignUpLayout from "../components/Layouts/SignUpLayout.component"
 import Layout from "../components/Layouts/Layout.component"
-import SignUp from "../components/SignUpSignIn/SignUp.component"
-import SignIn from "../components/SignUpSignIn/SignIn.component"
+import SignUpPage from "../components/SignUpSignIn/SignUpPage.component"
+import SignInPage from "../components/SignUpSignIn/SignInPage.component"
+import ForgotPasswordPage from "../components/SignUpSignIn/ForgotPasswordPage.component"
 import Dashboard from "../components/Dashboard/Dashboard.component"
 
 function RequireAnon({ children }) {
@@ -40,9 +41,10 @@ const AppRouter = () => {
           </RequireAnon>
         }
       >
-        <Route path="/" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       </Route>
       <Route
         element={

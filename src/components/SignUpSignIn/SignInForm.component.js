@@ -4,9 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import TextField from "../../common/TextField/TextField.component"
 
-import logo from "../../assets/images/icon-green.png"
-
-const SignIn = () => {
+const SignInForm = () => {
   const navigate = useNavigate()
   const auth = getAuth()
 
@@ -48,48 +46,41 @@ const SignIn = () => {
         setPasswordError("Incorrect password")
         return
       }
+      setEmailError(error.message)
     })
   }
 
   return (
-    <div className="w-64 sm:w-96 bg-white px-8 py-12 rounded">
-      <div className="flex direction-row items-center">
-        <img src={logo} className="w-5" alt="" />
-        <span className="text-4xl font-semibold pl-2">Expensify</span>
+    <form className="grid gap-4">
+      <TextField
+        error={!!emailError}
+        helperText={emailError}
+        label="Email"
+        onChange={onEmailChange}
+        type="email"
+        value={email}
+      />
+      <TextField
+        error={!!passwordError}
+        helperText={passwordError}
+        label="Password"
+        onChange={onPasswordChange}
+        type="password"
+        value={password}
+      />
+      <div className="flex flex-col">
+        <button
+          className="px-4 py-2 text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-600 font-semibold rounded transition-colors"
+          onClick={handleLogin}
+        >
+          Sign in
+        </button>
+        <Link className="mt-2 text-sm text-right underline hover:text-sky-800" to="/forgot-password">
+          Forgot password?
+        </Link>
       </div>
-      <div className="mt-8">
-        Take control of your spending
-      </div>
-      <div className="mt-8">
-        <form className="grid gap-4">
-          <TextField
-            error={!!emailError}
-            helperText={emailError}
-            label="Email"
-            onChange={onEmailChange}
-            value={email}
-          />
-          <TextField
-            error={!!passwordError}
-            helperText={passwordError}
-            label="Password"
-            onChange={onPasswordChange}
-            type="password"
-            value={password}
-          />
-          <button
-            className="px-4 py-2 text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-600 font-semibold rounded transition-colors"
-            onClick={handleLogin}
-          >
-            Sign in
-          </button>
-        </form>
-      </div>
-      <div className="mt-8">
-        Don't have an account? <Link className="underline" to="/signup">Sign Up</Link>
-      </div>
-    </div>
+    </form>
   )
 }
  
-export default SignIn
+export default SignInForm
