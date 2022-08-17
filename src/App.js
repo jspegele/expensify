@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect } from 'react'
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 
-function App() {
+import AppRouter from "./app/AppRouter.component"
+import { AuthContext } from "./contexts/AuthContext"
+
+const App = () => {
+  const auth = getAuth()
+  const { setAuthState } = useContext(AuthContext)
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthState(user)
+      }
+    })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AppRouter />
+  )
 }
 
-export default App;
+export default App
