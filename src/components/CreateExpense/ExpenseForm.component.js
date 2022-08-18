@@ -70,7 +70,7 @@ const ExpenseForm = () => {
         <TextField label="Note" onChange={onNoteChange} value={note} />
         <TextField label="Tags" onChange={onTagsChange} value={tags} />
         <button
-          className="px-8 py-2 text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-600 font-semibold rounded transition-colors justify-self-start"
+          className="px-8 py-2 text-white bg-sky-700 hover:bg-sky-600 active:bg-sky-700 font-semibold rounded transition-colors justify-self-start"
           type="submit"
         >
           Save Transaction
