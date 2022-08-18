@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { getAuth, sendPasswordResetEmail } from "firebase/auth"
 
-import TextField from "../../common/TextField/TextField.component"
+import TextField from "../../common/TextField.component"
 
 const ForgotPasswordForm = ({ setSent }) => {
   const auth = getAuth()

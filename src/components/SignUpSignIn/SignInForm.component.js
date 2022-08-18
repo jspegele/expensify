@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-import TextField from "../../common/TextField/TextField.component"
+import TextField from "../../common/TextField.component"
 
 const SignInForm = () => {
   const navigate = useNavigate()

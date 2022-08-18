@@ -7,13 +7,13 @@ const TextField = ({ error, helperText, label, type, ...restOfProps }) => {
   return (
     <div>
       <label
-        className="block text-gray-700 text-sm font-semibold mb-1"
+        className="text-gray-700 font-semibold text-sm mb-2"
         htmlFor={id}
       >
         {label}
       </label>
       <input
-        className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+        className={`appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
           error
             ? "border-red-500 focus:ring-red-500 focus:border-red-500"
             : "focus:ring-blue-500 focus:border-blue-500"
@@ -32,7 +32,6 @@ const TextField = ({ error, helperText, label, type, ...restOfProps }) => {
 }
 
 TextField.propTypes = {
-  className: PropTypes.string,
   error: PropTypes.bool,
   helperText: PropTypes.string,
   label: PropTypes.string,

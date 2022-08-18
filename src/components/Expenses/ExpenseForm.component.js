@@ -1,45 +1,76 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { nanoid } from "nanoid"
+
+import { ExpensesContext } from "../../contexts/ExpensesContext"
+
+import RadioGroup from "../../common/RadioGroup.component"
+import TextField from "../../common/TextField.component"
 
 const ExpenseForm = () => {
-  const [type, setType] = useState("")
+  const navigate = useNavigate()
+  const { startAddExpense } = useContext(ExpensesContext)
+  const [type, setType] = useState("Expense")
+  const [description, setDescription] = useState("")
+  const [amount, setAmount] = useState("")
+  const [date, setDate] = useState("")
+  const [note, setNote] = useState("")
+  const [tags, setTags] = useState("")
 
   const onTypeChange = (e) => setType(e.target.value)
+  const onDescriptionChange = (e) => setDescription(e.target.value)
+  const onAmountChange = (e) => setAmount(e.target.value)
+  const onDateChange = (e) => setDate(e.target.value)
+  const onNoteChange = (e) => setNote(e.target.value)
+  const onTagsChange = (e) => setTags(e.target.value)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    startAddExpense(nanoid(), {
+      type,
+      description,
+      amount: parseInt(amount),
+      date,
+      note,
+      tags,
+    }).then(() => navigate("/dashboard"))
+  }
 
   return (
-    <form>
-      <div className="flex">
-        <div className="flex items-center mb-4">
-          <input
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            id="type-expense"
-            name="transaction-type"
-            onChange={onTypeChange}
-            type="radio"
-            value="expense"
-          />
-          <label
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            htmlFor="type-expense"
-          >
-            Expense
-          </label>
-        </div>
-        <div className="flex items-center">
-          <input
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            id="type-income"
-            name="transaction-type"
-            onChange={onTypeChange}
-            type="radio"
-            value="income"
-          />
-          <label
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            htmlFor="type-income"
-          >
-            Income
-          </label>
-        </div>
+    <form className="max-w-3xl" onSubmit={handleSubmit}>
+      <div className="grid gap-4">
+        <RadioGroup
+          currentValue={type}
+          label="Type"
+          onChange={onTypeChange}
+          values={["Expense", "Income"]}
+        />
+        <TextField
+          label="Description"
+          onChange={onDescriptionChange}
+          value={description}
+        />
+        <TextField
+          label="Amount"
+          onChange={onAmountChange}
+          type="number"
+          value={amount}
+        />
+        <TextField
+          label="Date"
+          onChange={onDateChange}
+          type="date"
+          value={date}
+        />
+        <TextField label="Note" onChange={onNoteChange} value={note} />
+        <TextField label="Tags" onChange={onTagsChange} value={tags} />
+        <button
+          className="px-8 py-2 text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-600 font-semibold rounded transition-colors justify-self-start"
+          type="submit"
+        >
+          Save Transaction
+        </button>
       </div>
     </form>
   )

@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
-import logo from "../../assets/images/icon-green.png"
 import ForgotPasswordForm from "./ForgotPasswordForm.component"
 
 const ForgotPasswordPage = () => {

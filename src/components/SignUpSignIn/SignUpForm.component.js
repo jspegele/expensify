@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 
-import TextField from "../../common/TextField/TextField.component"
+import TextField from "../../common/TextField.component"
 
 const SignUpForm = () => {
   const auth = getAuth()
