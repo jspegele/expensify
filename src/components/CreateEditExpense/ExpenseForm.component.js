@@ -1,19 +1,11 @@
-import React, { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react"
+import { PropTypes } from "prop-types"
 import { nanoid } from "nanoid"
-
-import { AuthContext } from "../../contexts/AuthContext"
-import { ExpensesContext } from "../../contexts/ExpensesContext"
 
 import RadioGroup from "../../common/RadioGroup.component"
 import TextField from "../../common/TextField.component"
 
-const ExpenseForm = ({ expense = {} }) => {
-  const navigate = useNavigate()
-  const { startAddExpense } = useContext(ExpensesContext)
-  const { selectUid } = useContext(AuthContext)
-  const uid = selectUid()
-
+const ExpenseForm = ({ handleExpense, expense = {} }) => {
   const [type, setType] = useState(expense.type || "expense")
   const [description, setDescription] = useState(expense.description || "")
   const [amount, setAmount] = useState(expense.amount || "")
@@ -31,14 +23,14 @@ const ExpenseForm = ({ expense = {} }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    startAddExpense(uid, nanoid(), {
+    handleExpense(nanoid(), {
       type,
       description,
       amount: parseInt(amount),
       date,
       note,
       tags,
-    }).then(() => navigate("/dashboard"))
+    })
   }
 
   return (
@@ -78,6 +70,10 @@ const ExpenseForm = ({ expense = {} }) => {
       </div>
     </form>
   )
+}
+
+ExpenseForm.propTypes = {
+  handleExpense: PropTypes.func.isRequired
 }
 
 export default ExpenseForm
