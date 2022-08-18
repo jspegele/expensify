@@ -8,18 +8,18 @@ import { ExpensesContext } from "../../contexts/ExpensesContext"
 import RadioGroup from "../../common/RadioGroup.component"
 import TextField from "../../common/TextField.component"
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ expense = {} }) => {
   const navigate = useNavigate()
   const { startAddExpense } = useContext(ExpensesContext)
   const { selectUid } = useContext(AuthContext)
   const uid = selectUid()
 
-  const [type, setType] = useState("expense")
-  const [description, setDescription] = useState("")
-  const [amount, setAmount] = useState("")
-  const [date, setDate] = useState("")
-  const [note, setNote] = useState("")
-  const [tags, setTags] = useState("")
+  const [type, setType] = useState(expense.type || "expense")
+  const [description, setDescription] = useState(expense.description || "")
+  const [amount, setAmount] = useState(expense.amount || "")
+  const [date, setDate] = useState(expense.date || "")
+  const [note, setNote] = useState(expense.note || "")
+  const [tags, setTags] = useState(expense.tags || "")
 
   const onTypeChange = (e) => setType(e.target.value)
   const onDescriptionChange = (e) => setDescription(e.target.value)

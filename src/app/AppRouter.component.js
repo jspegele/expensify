@@ -8,7 +8,8 @@ import Layout from "../components/common/Layout.component"
 import SignUpPage from "../components/SignUpSignIn/SignUpPage.component"
 import SignInPage from "../components/SignUpSignIn/SignInPage.component"
 import ForgotPasswordPage from "../components/SignUpSignIn/ForgotPasswordPage.component"
-import CreateExpensePage from "../components/CreateExpense/CreateExpensePage.component"
+import CreateExpensePage from "../components/CreateEditExpense/CreateExpensePage.component"
+import EditExpensePage from "../components/CreateEditExpense/EditExpensePage.component"
 import Dashboard from "../components/Dashboard/Dashboard.component"
 
 function RequireAnon({ children }) {
@@ -56,6 +57,7 @@ const AppRouter = () => {
       >
         <Route path="/create" element={<CreateExpensePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/edit/:id" element={<EditExpensePage />} />
       </Route>
     </Routes>
   )

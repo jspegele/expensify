@@ -12,7 +12,6 @@ export const ExpensesProvider = (props) => {
 
   const startSetExpenses = (uid) => {
     const path = "users/" + uid + "/expenses/"
-    console.log(path)
     return new Promise((resolve) => {
       get(ref(database, path))
         .then((snap) => {
@@ -47,6 +46,8 @@ export const ExpensesProvider = (props) => {
 
   const selectAllExpenses = () => expensesState
 
+  const selectExpenseById = (id) => expensesState.filter((expense) => expense.id === id)[0]
+
   return (
     <ExpensesContext.Provider
       value={{
@@ -55,6 +56,7 @@ export const ExpensesProvider = (props) => {
         startSetExpenses,
         startAddExpense,
         selectAllExpenses,
+        selectExpenseById,
       }}
     >
       {props.children}
