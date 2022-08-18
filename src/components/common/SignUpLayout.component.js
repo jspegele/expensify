@@ -9,7 +9,7 @@ const SignUpLayout = () => {
       <div className="w-64 sm:w-96 bg-white px-8 py-12 rounded">
         <div className="flex direction-row items-center">
           <img src={logo} className="w-5" alt="" />
-          <span className="text-4xl font-semibold pl-2">Expensify</span>
+          <span className="text-4xl font-semibold ml-2">Expensify</span>
         </div>
         <div className="mt-2 text-semibold text-emerald-800">Take control of your spending</div>
         <div className="mt-8">
