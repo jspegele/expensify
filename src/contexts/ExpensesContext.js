@@ -38,7 +38,10 @@ export const ExpensesProvider = (props) => {
     const path = "users/" + uid + "/expenses/" + id
     return new Promise((resolve) => {
       set(ref(database, path), expense).then(() => {
-        setExpensesState([...expensesState, { id, ...expense }])
+        const newState = [...expensesState, { id, ...expense }].sort(
+          (a, b) => a.date < b.date
+        )
+        setExpensesState(newState)
         resolve(true)
       })
     })
@@ -46,7 +49,8 @@ export const ExpensesProvider = (props) => {
 
   const selectAllExpenses = () => expensesState
 
-  const selectExpenseById = (id) => expensesState.filter((expense) => expense.id === id)[0]
+  const selectExpenseById = (id) =>
+    expensesState.filter((expense) => expense.id === id)[0]
 
   return (
     <ExpensesContext.Provider
