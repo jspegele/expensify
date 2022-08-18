@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import ExpensesTable from "./ExpensesTable.component"
 
 const HomePage = () => (
   <div>
@@ -7,6 +8,7 @@ const HomePage = () => (
     <p className="mt-8">
       <Link className="underline hover:text-sky-800" to="/create">Create Expense</Link>
     </p>
+    <ExpensesTable />
   </div>
 )
 

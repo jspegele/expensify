@@ -13,10 +13,14 @@ const App = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) setAuthState(user)
-      startSetExpenses().then(() => {
+      if (user) {
+        setAuthState(user)
+        startSetExpenses(user.uid).then(() => {
+          setRenderApp(true)
+        })
+      } else {
         setRenderApp(true)
-      })
+      }
     })
   }, [])
 

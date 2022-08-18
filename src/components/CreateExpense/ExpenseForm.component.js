@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { nanoid } from "nanoid"
 
+import { AuthContext } from "../../contexts/AuthContext"
 import { ExpensesContext } from "../../contexts/ExpensesContext"
 
 import RadioGroup from "../../common/RadioGroup.component"
@@ -10,6 +11,9 @@ import TextField from "../../common/TextField.component"
 const ExpenseForm = () => {
   const navigate = useNavigate()
   const { startAddExpense } = useContext(ExpensesContext)
+  const { selectUid } = useContext(AuthContext)
+  const uid = selectUid()
+
   const [type, setType] = useState("Expense")
   const [description, setDescription] = useState("")
   const [amount, setAmount] = useState("")
@@ -27,7 +31,7 @@ const ExpenseForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    startAddExpense(nanoid(), {
+    startAddExpense(uid, nanoid(), {
       type,
       description,
       amount: parseInt(amount),

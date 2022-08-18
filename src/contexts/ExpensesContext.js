@@ -1,7 +1,5 @@
-import React, { useContext, useState, createContext } from "react"
+import React, { useState, createContext } from "react"
 import { getDatabase, ref, get, set } from "firebase/database"
-
-import { AuthContext } from "./AuthContext"
 
 export const ExpensesContext = createContext()
 
@@ -9,13 +7,12 @@ const initialState = []
 
 export const ExpensesProvider = (props) => {
   const database = getDatabase()
-  const { selectUid } = useContext(AuthContext)
-  const uid = selectUid()
 
   const [expensesState, setExpensesState] = useState(initialState)
 
-  const startSetExpenses = () => {
+  const startSetExpenses = (uid) => {
     const path = "users/" + uid + "/expenses/"
+    console.log(path)
     return new Promise((resolve) => {
       get(ref(database, path))
         .then((snap) => {
@@ -38,7 +35,7 @@ export const ExpensesProvider = (props) => {
     })
   }
 
-  const startAddExpense = (id, expense) => {
+  const startAddExpense = (uid, id, expense) => {
     const path = "users/" + uid + "/expenses/" + id
     return new Promise((resolve) => {
       set(ref(database, path), expense).then(() => {
@@ -47,6 +44,8 @@ export const ExpensesProvider = (props) => {
     })
   }
 
+  const selectAllExpenses = () => expensesState
+
   return (
     <ExpensesContext.Provider
       value={{
@@ -54,6 +53,7 @@ export const ExpensesProvider = (props) => {
         setExpensesState,
         startSetExpenses,
         startAddExpense,
+        selectAllExpenses,
       }}
     >
       {props.children}
