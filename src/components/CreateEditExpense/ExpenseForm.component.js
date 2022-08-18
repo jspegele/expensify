@@ -5,7 +5,7 @@ import { nanoid } from "nanoid"
 import RadioGroup from "../../common/RadioGroup.component"
 import TextField from "../../common/TextField.component"
 
-const ExpenseForm = ({ handleExpense, expense = {} }) => {
+const ExpenseForm = ({ expense = {}, handleExpense }) => {
   const [type, setType] = useState(expense.type || "expense")
   const [description, setDescription] = useState(expense.description || "")
   const [amount, setAmount] = useState(expense.amount || "")
@@ -23,7 +23,7 @@ const ExpenseForm = ({ handleExpense, expense = {} }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    handleExpense(nanoid(), {
+    handleExpense(expense.id || nanoid(), {
       type,
       description,
       amount: parseInt(amount),
@@ -73,7 +73,7 @@ const ExpenseForm = ({ handleExpense, expense = {} }) => {
 }
 
 ExpenseForm.propTypes = {
-  handleExpense: PropTypes.func.isRequired
+  handleExpense: PropTypes.func.isRequired,
 }
 
 export default ExpenseForm

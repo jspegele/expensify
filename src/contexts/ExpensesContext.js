@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react"
-import { getDatabase, ref, get, set } from "firebase/database"
+import { getDatabase, ref, get, set, update } from "firebase/database"
 
 export const ExpensesContext = createContext()
 
@@ -34,13 +34,28 @@ export const ExpensesProvider = (props) => {
     })
   }
 
-  const startAddExpense = (uid, id, expense) => {
-    const path = "users/" + uid + "/expenses/" + id
+  const startAddExpense = (uid, expenseId, expense) => {
+    const path = "users/" + uid + "/expenses/" + expenseId
     return new Promise((resolve) => {
       set(ref(database, path), expense).then(() => {
-        const newState = [...expensesState, { id, ...expense }].sort(
+        const newState = [...expensesState, { id: expenseId, ...expense }].sort(
           (a, b) => a.date < b.date
         )
+        setExpensesState(newState)
+        resolve(true)
+      })
+    })
+  }
+
+  const startEditExpense = (uid, expenseId, expense) => {
+    const path = "users/" + uid + "/expenses/" + expenseId
+
+    return new Promise((resolve) => {
+      update(ref(database), { [path]: expense }).then(() => {
+        const newState = [
+          ...expensesState.filter((expense) => expense.id !== expenseId),
+          { id: expenseId, ...expense },
+        ].sort((a, b) => a.date < b.date)
         setExpensesState(newState)
         resolve(true)
       })
@@ -59,6 +74,7 @@ export const ExpensesProvider = (props) => {
         setExpensesState,
         startSetExpenses,
         startAddExpense,
+        startEditExpense,
         selectAllExpenses,
         selectExpenseById,
       }}
