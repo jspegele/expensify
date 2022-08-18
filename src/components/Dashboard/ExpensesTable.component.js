@@ -18,7 +18,7 @@ const ExpensesTable = () => {
       </thead>
       <tbody>
         {expenses?.length > 0 &&
-          expenses.map((expense) => <ExpensesTableRow expense={expense} />)}
+          expenses.map((expense) => <ExpensesTableRow expense={expense} key={expense.id} />)}
       </tbody>
     </table>
   )
