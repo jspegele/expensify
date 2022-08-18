@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
 import ActionsBar from "./ActionsBar.component"
 import ExpensesTable from "./ExpensesTable.component"
