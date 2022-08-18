@@ -8,7 +8,7 @@ const ExpensesTable = () => {
   const expenses = selectAllExpenses()
 
   return (
-    <table className="table-auto w-full max-w-4xl border border-gray-200 mt-8">
+    <table className="table-auto w-full border border-gray-200 mt-8">
       <thead>
         <tr className="border-b border-gray-200 bg-gray-100">
           <th className="p-2 text-left text-gray-700 font-medium">Date</th>

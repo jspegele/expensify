@@ -42,7 +42,7 @@ const ExpenseForm = () => {
   }
 
   return (
-    <form className="max-w-3xl" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="grid gap-4">
         <RadioGroup
           currentValue={type}

@@ -10,7 +10,7 @@ const Layout = () => {
       <div className="grow-0">
         <Header />
       </div>
-      <div className="grow container mx-auto py-10">
+      <div className="grow container max-w-5xl mx-auto py-10">
         <Outlet />
       </div>
       <div className="grow-0">
