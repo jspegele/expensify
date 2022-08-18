@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Layout from "../Layouts/Layout.component"
+import Layout from "../common/Layout.component"
 
 const HomePage = () => (
   <Layout>

@@ -3,8 +3,8 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom"
 
 import { AuthContext } from "../contexts/AuthContext"
 
-import SignUpLayout from "../components/Layouts/SignUpLayout.component"
-import Layout from "../components/Layouts/Layout.component"
+import SignUpLayout from "../components/common/SignUpLayout.component"
+import Layout from "../components/common/Layout.component"
 import SignUpPage from "../components/SignUpSignIn/SignUpPage.component"
 import SignInPage from "../components/SignUpSignIn/SignInPage.component"
 import ForgotPasswordPage from "../components/SignUpSignIn/ForgotPasswordPage.component"
