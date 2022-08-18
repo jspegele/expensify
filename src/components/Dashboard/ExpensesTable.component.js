@@ -13,7 +13,7 @@ const ExpensesTable = () => {
         <tr className="border-b border-gray-200 bg-gray-100">
           <th className="p-2 text-left text-gray-700 font-medium">Date</th>
           <th className="p-2 text-left text-gray-700 font-medium">Transaction</th>
-          <th className="p-2 text-left text-gray-700 font-medium">Amount</th>
+          <th className="p-2 text-right text-gray-700 font-medium">Amount</th>
         </tr>
       </thead>
       <tbody>
