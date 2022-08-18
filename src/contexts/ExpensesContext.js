@@ -25,7 +25,7 @@ export const ExpensesProvider = (props) => {
               })
             }
           }
-          setExpensesState(dataArray.sort((a, b) => a.date > b.date))
+          setExpensesState(dataArray.sort((a, b) => a.date < b.date))
           resolve(true)
         })
         .catch((error) => {
@@ -39,6 +39,7 @@ export const ExpensesProvider = (props) => {
     const path = "users/" + uid + "/expenses/" + id
     return new Promise((resolve) => {
       set(ref(database, path), expense).then(() => {
+        setExpensesState([...expensesState, { id, ...expense }])
         resolve(true)
       })
     })
