@@ -3,16 +3,20 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 import AppRouter from "./app/AppRouter.component"
 import { AuthContext } from "./contexts/AuthContext"
+import { ExpensesContext } from "./contexts/ExpensesContext"
 
 const App = () => {
   const auth = getAuth()
   const { setAuthState } = useContext(AuthContext)
+  const { startSetExpenses } = useContext(ExpensesContext)
   const [renderApp, setRenderApp] = useState(false)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) setAuthState(user)
-      setRenderApp(true)
+      startSetExpenses().then(() => {
+        setRenderApp(true)
+      })
     })
   }, [])
 
