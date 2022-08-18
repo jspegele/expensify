@@ -14,7 +14,7 @@ const ExpenseForm = () => {
   const { selectUid } = useContext(AuthContext)
   const uid = selectUid()
 
-  const [type, setType] = useState("Expense")
+  const [type, setType] = useState("expense")
   const [description, setDescription] = useState("")
   const [amount, setAmount] = useState("")
   const [date, setDate] = useState("")
@@ -48,7 +48,7 @@ const ExpenseForm = () => {
           currentValue={type}
           label="Type"
           onChange={onTypeChange}
-          values={["Expense", "Income"]}
+          values={["expense", "income"]}
         />
         <TextField
           label="Description"

@@ -23,7 +23,7 @@ const RadioGroup = ({ currentValue, label, values, onChange }) => {
               value={value}
             />
             <label className="ml-2 text-gray-900" htmlFor={`${label}-${value}`}>
-              {value}
+              {value.charAt(0).toUpperCase() + value.slice(1)}
             </label>
           </div>
         ))}
