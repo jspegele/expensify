@@ -3,16 +3,21 @@ import React, { useState, createContext } from "react"
 export const FiltersContext = createContext()
 
 const initialState = {
+  sortBy: "titleDesc",
   text: "",
 }
 
 export const FiltersProvider = (props) => {
   const [filtersState, setFiltersState] = useState(initialState)
 
+  const setSortBy = (sortBy) => setFiltersState((prevState) => ({ ...prevState, sortBy }))
+
   const setTextFilter = (text) =>
     setFiltersState((prevState) => ({ ...prevState, text }))
 
   const selectAllFilters = () => filtersState
+
+  const selectSortBy = () => filtersState.sortBy
 
   const selectTextFilter = () => filtersState.text
 
@@ -21,8 +26,10 @@ export const FiltersProvider = (props) => {
       value={{
         filtersState,
         setFiltersState,
-        selectAllFilters,
+        setSortBy,
         setTextFilter,
+        selectAllFilters,
+        selectSortBy,
         selectTextFilter,
       }}
     >
