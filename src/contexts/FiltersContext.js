@@ -3,34 +3,48 @@ import React, { useState, createContext } from "react"
 export const FiltersContext = createContext()
 
 const initialState = {
-  sortBy: "dateDesc",
   text: "",
+  startDate: "",
+  endDate: "",
+  sortBy: "dateDesc",
 }
 
 export const FiltersProvider = (props) => {
   const [filtersState, setFiltersState] = useState(initialState)
 
-  const setSortBy = (sortBy) => setFiltersState((prevState) => ({ ...prevState, sortBy }))
-
   const setTextFilter = (text) =>
     setFiltersState((prevState) => ({ ...prevState, text }))
 
+  const setStartDate = (startDate) => setFiltersState((prevState) => ({ ...prevState, startDate }))
+
+  const setEndDate = (endDate) => setFiltersState((prevState) => ({ ...prevState, endDate }))
+
+  const setSortBy = (sortBy) => setFiltersState((prevState) => ({ ...prevState, sortBy }))
+
   const selectAllFilters = () => filtersState
 
-  const selectSortBy = () => filtersState.sortBy
-
   const selectTextFilter = () => filtersState.text
+
+  const selectStartDate = () => filtersState.startDate
+
+  const selectEndDate = () => filtersState.endDate
+
+  const selectSortBy = () => filtersState.sortBy
 
   return (
     <FiltersContext.Provider
       value={{
         filtersState,
         setFiltersState,
-        setSortBy,
         setTextFilter,
+        setStartDate,
+        setEndDate,
+        setSortBy,
         selectAllFilters,
-        selectSortBy,
         selectTextFilter,
+        selectStartDate,
+        selectEndDate,
+        selectSortBy,
       }}
     >
       {props.children}
