@@ -33,7 +33,7 @@ const ExpenseForm = ({ expense = {}, handleExpense }) => {
       type,
       description,
       amount: type === "expense" ? parseInt(amount) * -1 : parseInt(amount),
-      date,
+      date: new Date(date).toString(),
       note,
       tags,
     })
