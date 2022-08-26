@@ -8,7 +8,13 @@ import TextField from "../../common/TextField.component"
 const ExpenseForm = ({ expense = {}, handleExpense }) => {
   const [type, setType] = useState(expense.type || "expense")
   const [description, setDescription] = useState(expense.description || "")
-  const [amount, setAmount] = useState(expense.amount || "")
+  const [amount, setAmount] = useState(
+    expense.amount
+      ? expense.amount < 0
+        ? expense.amount * -1
+        : expense.amount
+      : ""
+  )
   const [date, setDate] = useState(expense.date || "")
   const [note, setNote] = useState(expense.note || "")
   const [tags, setTags] = useState(expense.tags || "")
@@ -26,7 +32,7 @@ const ExpenseForm = ({ expense = {}, handleExpense }) => {
     handleExpense(expense.id || nanoid(), {
       type,
       description,
-      amount: parseInt(amount),
+      amount: type === "expense" ? parseInt(amount) * -1 : parseInt(amount),
       date,
       note,
       tags,

@@ -15,9 +15,11 @@ const ExpensesTableRow = ({ expense }) => {
       <td className="p-2">{expense.description}</td>
       <td className="p-2 text-right font-semibold">
         <span className={debit ? "text-red-800" : ""}>
-          {`${debit ? "(" : ""}$${Number(
-            expense.amount
-          ).toLocaleString("en")}${debit ? ")" : ""}`}
+          {debit ? (
+            `($${(Number(expense.amount) * -1).toLocaleString("en")})`
+          ) : (
+            `$${Number(expense.amount).toLocaleString("en")}`
+          )}
         </span>
       </td>
     </tr>
