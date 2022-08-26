@@ -10,7 +10,7 @@ import SignInPage from "../components/SignUpSignIn/SignInPage.component"
 import ForgotPasswordPage from "../components/SignUpSignIn/ForgotPasswordPage.component"
 import CreateExpensePage from "../components/CreateEditExpense/CreateExpensePage.component"
 import EditExpensePage from "../components/CreateEditExpense/EditExpensePage.component"
-import Dashboard from "../components/Dashboard/Dashboard.component"
+import DashboardPage from "../components/Dashboard/DashboardPage.component"
 
 function RequireAnon({ children }) {
   const { authState } = useContext(AuthContext)
@@ -56,7 +56,7 @@ const AppRouter = () => {
         }
       >
         <Route path="/create" element={<CreateExpensePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/edit/:id" element={<EditExpensePage />} />
       </Route>
     </Routes>

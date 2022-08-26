@@ -9,8 +9,8 @@ const Header = () => {
   const { handleSignOut } = useContext(AuthContext)
 
   return (
-    <header className="py-8 px-2 bg-emerald-800 text-white">
-      <div className="container max-w-5xl mx-auto">
+    <header className="py-8 bg-emerald-800 text-white">
+      <div className="container px-2 max-w-5xl mx-auto">
         <div className="flex justify-between">
           <div className="flex direction-row items-center">
             <img src={logo} className="w-5" alt="" />

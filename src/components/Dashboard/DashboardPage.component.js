@@ -4,7 +4,7 @@ import ActionsBar from "./ActionsBar.component"
 import ExpensesTable from "./ExpensesTable.component"
 import FiltersBar from "./FiltersBar.component"
 
-const HomePage = () => (
+const DashboardPage = () => (
   <div>
     <h1 className="font-medium text-2xl pb-8">Dashboard</h1>
     <div>
@@ -19,4 +19,4 @@ const HomePage = () => (
   </div>
 )
 
-export default HomePage
+export default DashboardPage
