@@ -72,12 +72,19 @@ export const ExpensesProvider = (props) => {
 
     return expensesState
       .filter((expense) => {
+        const startDate = new Date(filters.startDate)
+        const endDate = new Date(filters.endDate)
+        const transactionDate = new Date(expense.date)
+
+        const startDateMatch = filters.startDate ? transactionDate >= startDate ? true : false : true
+        const endDateMatch = filters.endDate ? transactionDate <= endDate ? true : false : true
+
         const textMatch =
           expense.description.toLowerCase().includes(filters.text) ||
           expense.note.toLowerCase().includes(filters.text) ||
           expense.tags.toLowerCase().includes(filters.text)
 
-        return textMatch
+        return startDateMatch && endDateMatch && textMatch
       })
       .sort((a, b) => {
         if (filters.sortBy === "amountDesc") return a.amount < b.amount ? 1 : -1
