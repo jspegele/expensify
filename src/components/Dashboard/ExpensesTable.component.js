@@ -4,8 +4,8 @@ import { ExpensesContext } from "../../contexts/ExpensesContext"
 import ExpensesTableRow from "./ExpensesTableRow.component"
 
 const ExpensesTable = () => {
-  const { selectAllExpenses } = useContext(ExpensesContext)
-  const expenses = selectAllExpenses()
+  const { selectVisibleExpenses } = useContext(ExpensesContext)
+  const expenses = selectVisibleExpenses()
 
   return (
     <table className="table-auto w-full border border-gray-200 mt-8">

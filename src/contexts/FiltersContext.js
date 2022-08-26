@@ -12,6 +12,8 @@ export const FiltersProvider = (props) => {
   const setTextFilter = (text) =>
     setFiltersState((prevState) => ({ ...prevState, text }))
 
+  const selectAllFilters = () => filtersState
+
   const selectTextFilter = () => filtersState.text
 
   return (
@@ -19,6 +21,7 @@ export const FiltersProvider = (props) => {
       value={{
         filtersState,
         setFiltersState,
+        selectAllFilters,
         setTextFilter,
         selectTextFilter,
       }}

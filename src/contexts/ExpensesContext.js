@@ -1,5 +1,7 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext, useContext } from "react"
 import { getDatabase, ref, get, set, update } from "firebase/database"
+
+import { FiltersContext } from "./FiltersContext"
 
 export const ExpensesContext = createContext()
 
@@ -7,6 +9,7 @@ const initialState = []
 
 export const ExpensesProvider = (props) => {
   const database = getDatabase()
+  const { selectAllFilters } = useContext(FiltersContext)
 
   const [expensesState, setExpensesState] = useState(initialState)
 
@@ -64,6 +67,17 @@ export const ExpensesProvider = (props) => {
 
   const selectAllExpenses = () => expensesState
 
+  const selectVisibleExpenses = () =>
+    expensesState.filter((expense) => {
+      const filters = selectAllFilters()
+      const textMatch =
+        expense.description.toLowerCase().includes(filters.text) ||
+        expense.note.toLowerCase().includes(filters.text) ||
+        expense.tags.toLowerCase().includes(filters.text)
+
+      return textMatch
+    })
+
   const selectExpenseById = (id) =>
     expensesState.filter((expense) => expense.id === id)[0]
 
@@ -76,6 +90,7 @@ export const ExpensesProvider = (props) => {
         startAddExpense,
         startEditExpense,
         selectAllExpenses,
+        selectVisibleExpenses,
         selectExpenseById,
       }}
     >
