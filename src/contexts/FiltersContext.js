@@ -3,7 +3,7 @@ import React, { useState, createContext } from "react"
 export const FiltersContext = createContext()
 
 const initialState = {
-  sortBy: "titleDesc",
+  sortBy: "dateDesc",
   text: "",
 }
 

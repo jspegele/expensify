@@ -67,16 +67,31 @@ export const ExpensesProvider = (props) => {
 
   const selectAllExpenses = () => expensesState
 
-  const selectVisibleExpenses = () =>
-    expensesState.filter((expense) => {
-      const filters = selectAllFilters()
-      const textMatch =
-        expense.description.toLowerCase().includes(filters.text) ||
-        expense.note.toLowerCase().includes(filters.text) ||
-        expense.tags.toLowerCase().includes(filters.text)
+  const selectVisibleExpenses = () => {
+    const filters = selectAllFilters()
 
-      return textMatch
-    })
+    return expensesState
+      .filter((expense) => {
+        const textMatch =
+          expense.description.toLowerCase().includes(filters.text) ||
+          expense.note.toLowerCase().includes(filters.text) ||
+          expense.tags.toLowerCase().includes(filters.text)
+
+        return textMatch
+      })
+      .sort((a, b) => {
+        if (filters.sortBy === "amountDesc") return a.amount < b.amount ? 1 : -1
+        if (filters.sortBy === "amountAsc") return a.amount > b.amount ? 1 : -1
+        if (filters.sortBy === "dateDesc") return a.date < b.date ? 1 : -1
+        if (filters.sortBy === "dateAsc") return a.date > b.date ? 1 : -1
+        if (filters.sortBy === "titleDesc")
+          return a.description < b.description ? 1 : -1
+        if (filters.sortBy === "titleAsc")
+          return a.description > b.description ? 1 : -1
+
+        return 1
+      })
+  }
 
   const selectExpenseById = (id) =>
     expensesState.filter((expense) => expense.id === id)[0]
