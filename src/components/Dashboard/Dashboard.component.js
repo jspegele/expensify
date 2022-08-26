@@ -7,9 +7,15 @@ import FiltersBar from "./FiltersBar.component"
 const HomePage = () => (
   <div>
     <h1 className="font-medium text-2xl pb-8">Dashboard</h1>
-    <FiltersBar />
-    <ActionsBar />
-    <ExpensesTable />
+    <div>
+      <ActionsBar />
+    </div>
+    <div className="mt-8">
+      <FiltersBar />
+    </div>
+    <div className="mt-4">
+      <ExpensesTable />
+    </div>
   </div>
 )
 

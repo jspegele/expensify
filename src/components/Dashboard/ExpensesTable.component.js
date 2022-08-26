@@ -8,7 +8,7 @@ const ExpensesTable = () => {
   const expenses = selectVisibleExpenses()
 
   return (
-    <table className="table-auto sm:table-fixed w-full border border-gray-200 mt-8">
+    <table className="table-auto sm:table-fixed w-full border border-gray-200">
       <thead>
         <tr className="border-b border-gray-200 bg-gray-100">
           <th className="sm:w-1/4 md:w-1/6 p-2 text-left text-gray-700 font-medium">Date</th>
