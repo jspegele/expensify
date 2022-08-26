@@ -8,17 +8,22 @@ const ExpensesTable = () => {
   const expenses = selectVisibleExpenses()
 
   return (
-    <table className="table-auto w-full border border-gray-200 mt-8">
+    <table className="table-auto sm:table-fixed w-full border border-gray-200 mt-8">
       <thead>
         <tr className="border-b border-gray-200 bg-gray-100">
-          <th className="p-2 text-left text-gray-700 font-medium">Date</th>
-          <th className="p-2 text-left text-gray-700 font-medium">Transaction</th>
-          <th className="p-2 text-right text-gray-700 font-medium">Amount</th>
+          <th className="sm:w-1/4 md:w-1/6 p-2 text-left text-gray-700 font-medium">Date</th>
+          <th className="sm:w-1/2 md:w-4/6 p-2 text-left text-gray-700 font-medium">Transaction</th>
+          <th className="sm:w-1/4 md:w-1/6 p-2 text-right text-gray-700 font-medium">Amount</th>
         </tr>
       </thead>
       <tbody>
-        {expenses?.length > 0 &&
-          expenses.map((expense) => <ExpensesTableRow expense={expense} key={expense.id} />)}
+        {expenses?.length > 0 ? (
+          expenses.map((expense) => <ExpensesTableRow expense={expense} key={expense.id} />)
+        ) : (
+          <tr className="border-b border-gray-200 hover:cursor-pointer hover:bg-gray-50">
+            <td className="p-2" colSpan="3">No transactions found</td>
+          </tr>
+        )}
       </tbody>
     </table>
   )
