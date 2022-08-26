@@ -7,7 +7,9 @@ import TextField from "../../common/TextField.component"
 
 const formatDate = (dateString) => {
   const date = new Date(dateString)
-  return (`${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate()}`)
+  return `${date.getFullYear()}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${date.getDate()}`
 }
 
 const ExpenseForm = ({ expense = {}, handleExpense }) => {
