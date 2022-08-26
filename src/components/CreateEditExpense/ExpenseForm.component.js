@@ -5,6 +5,8 @@ import { nanoid } from "nanoid"
 import RadioGroup from "../../common/RadioGroup.component"
 import TextField from "../../common/TextField.component"
 
+const formatDate = (dateString) => dateString.slice(0,10) // slice off just date from ISO string
+
 const ExpenseForm = ({ expense = {}, handleExpense }) => {
   const [type, setType] = useState(expense.type || "expense")
   const [description, setDescription] = useState(expense.description || "")
@@ -15,7 +17,7 @@ const ExpenseForm = ({ expense = {}, handleExpense }) => {
         : expense.amount
       : ""
   )
-  const [date, setDate] = useState(expense.date || "")
+  const [date, setDate] = useState(expense.date ? formatDate(expense.date) : "")
   const [note, setNote] = useState(expense.note || "")
   const [tags, setTags] = useState(expense.tags || "")
 
@@ -33,7 +35,7 @@ const ExpenseForm = ({ expense = {}, handleExpense }) => {
       type,
       description,
       amount: type === "expense" ? parseInt(amount) * -1 : parseInt(amount),
-      date: new Date(date).toString(),
+      date: new Date(date).toISOString(),
       note,
       tags,
     })
