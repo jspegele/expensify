@@ -5,7 +5,10 @@ import { nanoid } from "nanoid"
 import RadioGroup from "../../common/RadioGroup.component"
 import TextField from "../../common/TextField.component"
 
-const formatDate = (dateString) => dateString.slice(0,10) // slice off just date from ISO string
+const formatDate = (dateString) => {
+  const date = new Date(dateString)
+  return (`${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate()}`)
+}
 
 const ExpenseForm = ({ expense = {}, handleExpense }) => {
   const [type, setType] = useState(expense.type || "expense")
